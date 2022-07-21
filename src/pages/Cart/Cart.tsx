@@ -17,6 +17,7 @@ import {
   CheckoutInfoContainer,
   CheckoutItem,
   CheckoutItemInfo,
+  CheckoutItemInfoQuantity,
   CheckoutItemsContainer,
   CheckoutSummary,
   CheckoutSummaryItem,
@@ -82,15 +83,17 @@ export function Cart() {
             <img src={expressoTradicional} alt="" />
             <CheckoutItemInfo>
               <p>Expresso Tradicional</p>
-              <span>
-                <Minus />
-                <p>1</p>
-                <Plus />
-              </span>
-              <span>
-                <Trash size={16} color="#8047F8" />
-                <p>REMOVER</p>
-              </span>
+              <CheckoutItemInfoQuantity>
+                <span>
+                  <Minus />
+                  <h4>1</h4>
+                  <Plus />
+                </span>
+                <button>
+                  <Trash size={16} color="#8047F8" />
+                  <p>REMOVER</p>
+                </button>
+              </CheckoutItemInfoQuantity>
             </CheckoutItemInfo>
             <h4>R$ 9, 90</h4>
           </CheckoutItem>
@@ -99,15 +102,17 @@ export function Cart() {
             <img src={expressoTradicional} alt="" />
             <CheckoutItemInfo>
               <p>Latte</p>
-              <span>
-                <Minus />
-                <p>1</p>
-                <Plus />
-              </span>
-              <span>
-                <Trash size={16} color="#8047F8" />
-                <p>REMOVER</p>
-              </span>
+              <CheckoutItemInfoQuantity>
+                <span>
+                  <Minus />
+                  <h4>1</h4>
+                  <Plus />
+                </span>
+                <button>
+                  <Trash size={16} color="#8047F8" />
+                  <p>REMOVER</p>
+                </button>
+              </CheckoutItemInfoQuantity>
             </CheckoutItemInfo>
             <h4>R$ 19, 80</h4>
           </CheckoutItem>

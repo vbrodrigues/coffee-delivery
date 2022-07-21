@@ -84,11 +84,65 @@ export const CheckoutInfoContainer = styled.div`
   border-radius: 6px 32px;
 `;
 
-export const CheckoutItemsContainer = styled.div``;
+export const CheckoutItemsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 23rem;
+`;
 
-export const CheckoutItem = styled.div``;
+export const CheckoutItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
 
-export const CheckoutItemInfo = styled.div``;
+  img {
+    margin-right: 1.25rem;
+    width: 4rem;
+  }
+
+  h4 {
+    font-weight: bold;
+  }
+`;
+
+export const CheckoutItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 3.125rem;
+
+  p:first-child {
+    margin: 0.5rem;
+    font-weight: bold;
+  }
+`;
+
+export const CheckoutItemInfoQuantity = styled.div`
+  display: flex;
+  gap: 0.5rem;
+
+  span,
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+
+    background: ${(props) => props.theme["purple-300"]};
+    border-radius: 6px;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+`;
 
 export const CheckoutSummary = styled.div``;
 
