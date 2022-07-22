@@ -4,6 +4,7 @@ export const ConfirmationContainer = styled.div`
   display: flex;
   margin-top: 5rem;
   gap: 6.375rem;
+  align-items: flex-end;
 
   img {
     width: 30.45rem;

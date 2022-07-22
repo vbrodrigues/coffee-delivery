@@ -18,10 +18,18 @@ export const LocationIndicator = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  gap: 0.25rem;
+  gap: 0.55rem;
+
+  cursor: pointer;
 
   background: ${(props) => props.theme["purple-300"]};
   border-radius: 6px;
+
+  transition: opacity 0.1s;
+
+  &:hover {
+    opacity: 0.7;
+  }
 
   span {
     font-size: 0.875rem;

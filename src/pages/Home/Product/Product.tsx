@@ -97,11 +97,11 @@ export function Product({
 
   return (
     <ProductContainer>
-      <ProductHeader>
+      {/* <ProductHeader>
         <AddedToCartTag hidden={!addedToCart}>
           <CheckCircle></CheckCircle>
         </AddedToCartTag>
-      </ProductHeader>
+      </ProductHeader> */}
       <ProductInfo>
         <img src={PRODUCT_IMAGES[image]} alt="" />
         <TagsContainer>

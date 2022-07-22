@@ -9,6 +9,7 @@ export const ProductContainer = styled.div`
 
   background: ${(props) => props.theme["gray-200"]};
   border-radius: 6px 36px;
+  /* box-shadow: 0 8px 6px -6px ${(props) => props.theme["gray-500"]}; */
 `;
 
 export const ProductHeader = styled.div`
@@ -39,7 +40,7 @@ export const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -20px;
+  margin-top: -50px;
 
   h3 {
     font-family: "Baloo 2";

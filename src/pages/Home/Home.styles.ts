@@ -66,6 +66,7 @@ export const ProductsContainer = styled.div`
 export const ProductsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2rem;
+  column-gap: 2rem;
+  row-gap: 3rem;
   grid-auto-rows: minmax(20rem, auto);
 `;
