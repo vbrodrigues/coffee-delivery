@@ -82,6 +82,7 @@ export function Cart() {
     confirmAddress,
     paymentMethod,
     confirmPaymentMethod,
+    emptyCart,
   } = useContext(CartContext);
 
   function handleSelectPaymentMethod(paymentMethod: string) {
@@ -312,6 +313,7 @@ export function Cart() {
             <CheckoutConfirmButton
               type="submit"
               disabled={cartProducts.length === 0}
+              onClick={emptyCart}
             >
               CONFIRMAR PEDIDO
             </CheckoutConfirmButton>

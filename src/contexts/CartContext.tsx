@@ -30,6 +30,7 @@ interface Address {
 interface CartContextType {
   addProductToCart: (product: CartProduct) => void;
   removeProductFromCart: (productId: number) => void;
+  emptyCart: () => void;
   increaseProductCount: (productId: number) => void;
   decreaseProductCount: (productId: number) => void;
   cartProducts: CartProduct[];
@@ -87,6 +88,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         (state) => state - productOnCart.count * productOnCart.product.price
       );
     }
+  }
+
+  function emptyCart() {
+    setCartProducts([]);
   }
 
   function increaseProductCount(productId: number) {
@@ -155,6 +160,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       value={{
         addProductToCart,
         removeProductFromCart,
+        emptyCart,
         increaseProductCount,
         decreaseProductCount,
         cartProducts,
