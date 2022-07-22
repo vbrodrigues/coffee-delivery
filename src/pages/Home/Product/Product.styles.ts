@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ProductContainer = styled.div`
   width: 16rem;
@@ -9,6 +9,30 @@ export const ProductContainer = styled.div`
 
   background: ${(props) => props.theme["gray-200"]};
   border-radius: 6px 36px;
+`;
+
+export const ProductHeader = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding: 0.75rem;
+`;
+
+export const AddedToCartTag = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 1rem;
+
+  background: ${(props) => props.theme["green-300"]};
+  border-radius: 100px;
+
+  ${(props) =>
+    props.hidden &&
+    css`
+      visibility: hidden;
+    `}
 `;
 
 export const ProductInfo = styled.div`
@@ -83,7 +107,11 @@ export const ProductQuantity = styled.div`
   }
 `;
 
-export const CartButton = styled.button`
+interface CartButtonProps {
+  addedToCart?: boolean;
+}
+
+export const CartButton = styled.button<CartButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,7 +126,18 @@ export const CartButton = styled.button`
 
   transition: opacity 0.1s;
 
-  &:hover {
+  &:hover:not(:disabled) {
     opacity: 0.7;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  ${(props) =>
+    props.addedToCart &&
+    css`
+      background: ${(props) => props.theme["green-500"]};
+    `}
 `;

@@ -11,9 +11,14 @@ import {
 
 import bannerImg from "../../assets/Banner.svg";
 import { Clock, Coffee, Package, ShoppingCart } from "phosphor-react";
-import { Product } from "./Product/Product";
+import { Product, ProductProps } from "./Product/Product";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../contexts/CartContext";
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 export function Home() {
+  const { products } = useContext(ProductsContext);
+
   return (
     <HomeContainer>
       <BannerContainer>
@@ -58,17 +63,19 @@ export function Home() {
       <ProductsContainer>
         <h2>Nossos cafés</h2>
         <ProductsGrid>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
-          <Product></Product>
+          {products.map((product) => {
+            return (
+              <Product
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                tags={product.tags}
+                description={product.description}
+                price={product.price}
+                image={product.image}
+              />
+            );
+          })}
         </ProductsGrid>
       </ProductsContainer>
     </HomeContainer>

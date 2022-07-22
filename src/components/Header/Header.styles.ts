@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeaderContainer = styled.header`
-  width: 90rem;
+  width: 70rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,8 +29,13 @@ export const LocationIndicator = styled.div`
   }
 `;
 
-export const CartButton = styled.button`
+interface CartButtonProps {
+  displayBadge: boolean;
+}
+
+export const CartButton = styled.button<CartButtonProps>`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
@@ -46,5 +51,16 @@ export const CartButton = styled.button`
 
   &:hover {
     opacity: 0.7;
+  }
+
+  .CartWithItemsBadge {
+    margin-top: -1rem;
+    margin-right: -2.5rem;
+
+    ${(props) =>
+      !props.displayBadge &&
+      css`
+        visibility: hidden;
+      `}
   }
 `;
