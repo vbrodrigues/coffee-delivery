@@ -5,14 +5,7 @@ import {
   HeaderNav,
 } from "./Header.styles";
 import logo from "../../assets/Logo.svg";
-import {
-  Circle,
-  MapPin,
-  Person,
-  ShoppingCart,
-  UserCircle,
-  UserList,
-} from "phosphor-react";
+import { ShoppingCart, UserList } from "phosphor-react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
@@ -27,19 +20,16 @@ export function Header() {
       </NavLink>
 
       <HeaderNav>
-        <LocationIndicator>
-          <UserList size={22} weight="fill" color="#8047F8" />
-          <span>Meus pedidos</span>
-        </LocationIndicator>
+        <NavLink to="/orders" className="nav">
+          <LocationIndicator>
+            <UserList size={22} weight="fill" color="#8047F8" />
+            <span>Meus pedidos</span>
+          </LocationIndicator>
+        </NavLink>
 
-        <NavLink to="/cart">
+        <NavLink to="/cart" style={{ textDecoration: "none" }}>
           <CartButton displayBadge={cartProducts.length > 0}>
-            <Circle
-              className="CartWithItemsBadge"
-              size={14}
-              weight="fill"
-              color="#8047F8"
-            ></Circle>
+            <div className="CartWithItemsBadge">{cartProducts.length}</div>
             <ShoppingCart size={22} weight="fill" color="#C47F17" />
           </CartButton>
         </NavLink>

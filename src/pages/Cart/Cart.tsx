@@ -1,6 +1,5 @@
 import {
   Bank,
-  Check,
   CheckCircle,
   CreditCard,
   CurrencyDollar,
@@ -39,6 +38,7 @@ import { CartContext } from "../../contexts/CartContext";
 import { formatter, PRODUCT_IMAGES } from "../Home/Product/Product";
 import { FormProvider, useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
+import { OrdersContext } from "../../contexts/OrdersContext";
 
 const checkoutFormValidationSchema = zod.object({
   cep: zod.string(),
@@ -70,7 +70,7 @@ export function Cart() {
     },
   });
 
-  const { handleSubmit, watch, reset, register, formState } = checkoutForm;
+  const { handleSubmit, watch, register } = checkoutForm;
 
   const {
     cartProducts,
@@ -83,7 +83,10 @@ export function Cart() {
     paymentMethod,
     confirmPaymentMethod,
     emptyCart,
+    address,
   } = useContext(CartContext);
+
+  const { addOrder } = useContext(OrdersContext);
 
   function handleSelectPaymentMethod(paymentMethod: string) {
     confirmPaymentMethod(paymentMethod);
@@ -123,7 +126,19 @@ export function Cart() {
     // reset();
     setAddressIsConfirmed(true);
   }
-  console.log(formState.errors);
+
+  function handleConfirmOrder() {
+    emptyCart();
+    addOrder({
+      createdAt: new Date(),
+      id: 1,
+      itemsTotal,
+      shippingCost,
+      total: itemsTotal + shippingCost,
+      products: cartProducts,
+      address,
+    });
+  }
 
   return (
     <CartContainer>
@@ -252,6 +267,7 @@ export function Cart() {
         <h2>Cafés selecionados</h2>
         <CheckoutInfoContainer>
           <CheckoutItemsContainer>
+            {cartProducts.length === 0 && <h4>Seu carrinho está vazio.</h4>}
             {cartProducts.map((cartProduct) => {
               return (
                 <CheckoutItem key={cartProduct.product.id}>
@@ -313,7 +329,7 @@ export function Cart() {
             <CheckoutConfirmButton
               type="submit"
               disabled={cartProducts.length === 0}
-              onClick={emptyCart}
+              onClick={handleConfirmOrder}
             >
               CONFIRMAR PEDIDO
             </CheckoutConfirmButton>

@@ -17,7 +17,7 @@ interface PaymentMethod {
   name: string;
 }
 
-interface Address {
+export interface Address {
   cep: string;
   street: string;
   houseNumber: number;

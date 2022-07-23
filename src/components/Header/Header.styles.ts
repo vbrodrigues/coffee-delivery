@@ -5,6 +5,12 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  .nav {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+  }
 `;
 
 export const HeaderNav = styled.div`
@@ -64,6 +70,18 @@ export const CartButton = styled.button<CartButtonProps>`
   .CartWithItemsBadge {
     margin-top: -1rem;
     margin-right: -2.5rem;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    background: ${(props) => props.theme["purple-500"]};
+
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: ${(props) => props.theme["gray-100"]};
 
     ${(props) =>
       !props.displayBadge &&
