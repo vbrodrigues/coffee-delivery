@@ -15,7 +15,6 @@ import {
 
 export function Orders() {
   const { orders } = useContext(OrdersContext);
-  console.log(orders);
 
   return (
     <OrdersContainer>

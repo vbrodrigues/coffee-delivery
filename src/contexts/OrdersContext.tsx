@@ -33,8 +33,16 @@ export function OrdersContextProvider({
     const ordersJSON = localStorage.getItem("@coffee-delivery:orders-1.0.0");
 
     if (ordersJSON) {
-      const savedOrders = JSON.parse(ordersJSON);
-      setOrders(savedOrders);
+      const savedOrders: Order[] = JSON.parse(ordersJSON);
+      const sortedOrders = savedOrders.sort((a, b) => {
+        if (a.createdAt < b.createdAt) {
+          return 1;
+        } else if (a.createdAt === b.createdAt) {
+          return 0;
+        }
+        return -1;
+      });
+      setOrders(sortedOrders);
     }
   }, []);
 
@@ -45,7 +53,15 @@ export function OrdersContextProvider({
         "@coffee-delivery:orders-1.0.0",
         JSON.stringify(newOrders)
       );
-      return newOrders;
+      const sortedOrders = newOrders.sort((a, b) => {
+        if (a.createdAt < b.createdAt) {
+          return 1;
+        } else if (a.createdAt === b.createdAt) {
+          return 0;
+        }
+        return -1;
+      });
+      return sortedOrders;
     });
   }
 

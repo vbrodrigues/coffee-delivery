@@ -224,6 +224,18 @@ export const CheckoutItem = styled.div`
   &:not(:first-child) {
     margin-top: 1.5rem;
   }
+
+  .ProductTotal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 130%;
+    width: 100%;
+
+    & p {
+      font-size: 0.875rem;
+    }
+  }
 `;
 
 export const CheckoutItemInfo = styled.div`

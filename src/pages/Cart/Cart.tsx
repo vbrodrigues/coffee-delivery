@@ -86,7 +86,7 @@ export function Cart() {
     address,
   } = useContext(CartContext);
 
-  const { addOrder } = useContext(OrdersContext);
+  const { addOrder, orders } = useContext(OrdersContext);
 
   function handleSelectPaymentMethod(paymentMethod: string) {
     confirmPaymentMethod(paymentMethod);
@@ -131,7 +131,7 @@ export function Cart() {
     emptyCart();
     addOrder({
       createdAt: new Date(),
-      id: 1,
+      id: orders.length > 0 ? orders.slice(-1)[0].id + 1 : 1,
       itemsTotal,
       shippingCost,
       total: itemsTotal + shippingCost,
@@ -305,7 +305,17 @@ export function Cart() {
                       </CheckoutItemInfoQuantity>
                     </CheckoutItemInfo>
                   </div>
-                  <h4>{formatter.format(cartProduct.product.price)}</h4>
+                  <div className="ProductTotal">
+                    <h4>
+                      {formatter.format(
+                        cartProduct.product.price * cartProduct.count
+                      )}
+                    </h4>
+                    <p>
+                      {cartProduct.count}x{" "}
+                      {formatter.format(cartProduct.product.price)}
+                    </p>
+                  </div>
                 </CheckoutItem>
               );
             })}
