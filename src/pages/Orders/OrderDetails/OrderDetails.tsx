@@ -2,13 +2,15 @@ import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { Package, X } from "phosphor-react";
 import { OrderProps } from "../../../contexts/OrdersContext";
-import { formatter } from "../../Home/Product/Product";
+import { formatter, PRODUCT_IMAGES } from "../../Home/Product/Product";
 import {
   Background,
   OrderDetailsContainer,
   OrderDetailsHeader,
   OrderDetailsHeaderText,
   OrderDetailsInfo,
+  OrderItem,
+  OrderSummary,
 } from "./OrderDetails.styles";
 
 interface OrderDetailsProps {
@@ -43,7 +45,39 @@ export function OrderDetails({
                 <X size={32}></X>
               </div>
             </OrderDetailsHeader>
-            <OrderDetailsInfo>Teste</OrderDetailsInfo>
+            <OrderDetailsInfo>
+              <h3>Produtos</h3>
+              {order.products.map((product) => {
+                return (
+                  <OrderItem key={product.product.id}>
+                    <img src={PRODUCT_IMAGES[product.product.image]} alt="" />
+                    <p>{product.product.name}</p>
+                    <div className="ProductTotal">
+                      <h4>
+                        {formatter.format(
+                          product.product.price * product.count
+                        )}
+                      </h4>
+                      <p>
+                        {product.count}x{" "}
+                        {formatter.format(product.product.price)}
+                      </p>
+                    </div>
+                  </OrderItem>
+                );
+              })}
+              <OrderSummary>
+                <span>
+                  <p>Entrega: </p>
+                  <h4>{formatter.format(order?.shippingCost)}</h4>
+                </span>
+                <p>Endereço:</p>
+                <h3>
+                  <p>Total: </p>
+                  {formatter.format(order?.shippingCost + order?.itemsTotal)}
+                </h3>
+              </OrderSummary>
+            </OrderDetailsInfo>
           </OrderDetailsContainer>
         </Background>
       ) : null}

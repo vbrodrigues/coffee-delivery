@@ -59,6 +59,59 @@ export const OrderDetailsHeaderText = styled.div`
 
 export const OrderDetailsInfo = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 100%;
 
   z-index: 10;
+`;
+
+export const OrderSummary = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.875rem;
+  gap: 0.875rem;
+  line-height: 130%;
+
+  h3 {
+    font-weight: bold;
+  }
+
+  span {
+    display: flex;
+    gap: 0.5rem;
+  }
+`;
+
+export const OrderItem = styled.div`
+  display: flex;
+  align-items: center;
+  height: 4.5rem;
+  padding: 0 2rem;
+
+  border-bottom: 1px solid ${(props) => props.theme["gray-400"]};
+
+  img {
+    margin-right: 1.25rem;
+    width: 2rem;
+  }
+
+  h4 {
+    font-weight: bold;
+  }
+
+  div {
+    display: flex;
+  }
+
+  .ProductTotal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 130%;
+    width: 100%;
+
+    & p {
+      font-size: 0.875rem;
+    }
+  }
 `;
