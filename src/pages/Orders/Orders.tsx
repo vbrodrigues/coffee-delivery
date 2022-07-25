@@ -1,9 +1,10 @@
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { Package, Plus } from "phosphor-react";
-import { useContext } from "react";
-import { OrdersContext } from "../../contexts/OrdersContext";
+import { useContext, useState } from "react";
+import { OrderProps, OrdersContext } from "../../contexts/OrdersContext";
 import { formatter } from "../Home/Product/Product";
+import { OrderDetails } from "./OrderDetails/OrderDetails";
 import {
   Order,
   OrderDetailsCall,
@@ -15,6 +16,13 @@ import {
 
 export function Orders() {
   const { orders } = useContext(OrdersContext);
+  const [selectedOrder, setSelectedOrder] = useState<OrderProps | null>(null);
+
+  function handleOpenOrderDetails(order: OrderProps) {
+    console.log("Open details for order");
+    console.log(order);
+    setSelectedOrder(order);
+  }
 
   return (
     <OrdersContainer>
@@ -42,7 +50,7 @@ export function Orders() {
                   <p>Total: {formatter.format(order.total)}</p>
                 </OrderText>
               </OrderInfo>
-              <OrderDetailsCall>
+              <OrderDetailsCall onClick={() => handleOpenOrderDetails(order)}>
                 <a>Ver detalhes</a>
                 <Plus size={26}></Plus>
               </OrderDetailsCall>
@@ -50,6 +58,11 @@ export function Orders() {
           );
         })}
       </OrderListContainer>
+      <OrderDetails
+        showModal={!!selectedOrder}
+        order={selectedOrder}
+        setSelectedOrder={setSelectedOrder}
+      ></OrderDetails>
     </OrdersContainer>
   );
 }

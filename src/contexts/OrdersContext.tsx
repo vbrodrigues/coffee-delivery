@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { Address, CartProduct } from "./CartContext";
 
-interface Order {
+export interface OrderProps {
   id: number;
   products: CartProduct[];
   createdAt: Date;
@@ -12,8 +12,8 @@ interface Order {
 }
 
 interface OrdersContextType {
-  orders: Order[];
-  addOrder: (order: Order) => void;
+  orders: OrderProps[];
+  addOrder: (order: OrderProps) => void;
 }
 
 export const OrdersContext = createContext<OrdersContextType>(
@@ -27,13 +27,13 @@ interface OrdersContextProviderProps {
 export function OrdersContextProvider({
   children,
 }: OrdersContextProviderProps) {
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<OrderProps[]>([]);
 
   useEffect(() => {
     const ordersJSON = localStorage.getItem("@coffee-delivery:orders-1.0.0");
 
     if (ordersJSON) {
-      const savedOrders: Order[] = JSON.parse(ordersJSON);
+      const savedOrders: OrderProps[] = JSON.parse(ordersJSON);
       const sortedOrders = savedOrders.sort((a, b) => {
         if (a.createdAt < b.createdAt) {
           return 1;
@@ -46,7 +46,7 @@ export function OrdersContextProvider({
     }
   }, []);
 
-  function addOrder(order: Order) {
+  function addOrder(order: OrderProps) {
     setOrders((state) => {
       const newOrders = [...state, order];
       localStorage.setItem(
