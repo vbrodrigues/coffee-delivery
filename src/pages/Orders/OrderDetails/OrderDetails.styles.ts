@@ -26,7 +26,7 @@ export const OrderDetailsContainer = styled.div`
   position: fixed;
 
   box-shadow: -6px 8px 6px -6px ${(props) => props.theme["gray-500"]};
-  background: ${(props) => props.theme["gray-100"]};
+  background: ${(props) => props.theme["gray-200"]};
   border-radius: 6px;
   z-index: 10;
 `;
@@ -61,15 +61,19 @@ export const OrderDetailsInfo = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top: 0.875rem;
 
   z-index: 10;
+
+  h3 {
+    margin-bottom: 0.875rem;
+  }
 `;
 
 export const OrderSummary = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-top: 0.875rem;
-  gap: 0.875rem;
+  margin-top: 2rem;
+  justify-content: space-between;
   line-height: 130%;
 
   h3 {
@@ -114,4 +118,18 @@ export const OrderItem = styled.div`
       font-size: 0.875rem;
     }
   }
+`;
+
+export const OrderSummaryAddress = styled.div`
+  p {
+    display: flex;
+    gap: 0.5rem;
+  }
+`;
+
+export const OrderSummaryPrice = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  align-items: flex-end;
 `;

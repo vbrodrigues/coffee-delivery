@@ -36,7 +36,7 @@ export function Orders() {
           return (
             <Order key={order.id}>
               <OrderInfo>
-                <Package size={32} weight="fill"></Package>
+                <Package size={32} weight="fill" color="#8047F8"></Package>
                 <OrderText>
                   <h4>
                     {format(
@@ -52,7 +52,7 @@ export function Orders() {
               </OrderInfo>
               <OrderDetailsCall onClick={() => handleOpenOrderDetails(order)}>
                 <a>Ver detalhes</a>
-                <Plus size={26}></Plus>
+                <Plus size={26} color="#DBAC2C"></Plus>
               </OrderDetailsCall>
             </Order>
           );

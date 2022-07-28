@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
-import { Package, X } from "phosphor-react";
+import { Bicycle, MapPin, Package, X } from "phosphor-react";
 import { OrderProps } from "../../../contexts/OrdersContext";
 import { formatter, PRODUCT_IMAGES } from "../../Home/Product/Product";
 import {
@@ -11,6 +11,8 @@ import {
   OrderDetailsInfo,
   OrderItem,
   OrderSummary,
+  OrderSummaryAddress,
+  OrderSummaryPrice,
 } from "./OrderDetails.styles";
 
 interface OrderDetailsProps {
@@ -42,7 +44,7 @@ export function OrderDetails({
                 className="ModalClose"
                 onClick={() => setSelectedOrder(null)}
               >
-                <X size={32}></X>
+                <X size={32} color="#DBAC2C"></X>
               </div>
             </OrderDetailsHeader>
             <OrderDetailsInfo>
@@ -67,15 +69,37 @@ export function OrderDetails({
                 );
               })}
               <OrderSummary>
-                <span>
-                  <p>Entrega: </p>
-                  <h4>{formatter.format(order?.shippingCost)}</h4>
-                </span>
-                <p>Endereço:</p>
-                <h3>
-                  <p>Total: </p>
-                  {formatter.format(order?.shippingCost + order?.itemsTotal)}
-                </h3>
+                <OrderSummaryAddress>
+                  <p>
+                    <MapPin size={18} />
+                    Endereço:
+                  </p>
+                  <h4>
+                    <strong>
+                      Rua {order.address.street}, {order.address.houseNumber},{" "}
+                      {order.address.complement}
+                    </strong>
+                  </h4>
+                  <p>
+                    {order.address.neighbourhood} - {order.address.city},{" "}
+                    {order.address.state}
+                  </p>
+                </OrderSummaryAddress>
+                <OrderSummaryPrice>
+                  <span>
+                    <Bicycle size={18} />
+                    <h4>Entrega: </h4>
+                    <h4>{formatter.format(order?.shippingCost)}</h4>
+                  </span>
+                  <span>
+                    <h4>Total: </h4>
+                    <h3>
+                      {formatter.format(
+                        order?.shippingCost + order?.itemsTotal
+                      )}
+                    </h3>
+                  </span>
+                </OrderSummaryPrice>
               </OrderSummary>
             </OrderDetailsInfo>
           </OrderDetailsContainer>
